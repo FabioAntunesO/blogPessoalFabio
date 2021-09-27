@@ -1,10 +1,10 @@
-package org.fabio.blog;
+package org.generation.blogFabio;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BlogApplicationTests {
+class BlogFabioApplicationTests {
 
 	@Test
 	void contextLoads() {

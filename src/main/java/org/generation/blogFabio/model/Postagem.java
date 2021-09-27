@@ -1,5 +1,4 @@
-package org.fabio.blog.model;
-
+package org.generation.blogFabio.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,6 +13,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tb_postagem")
+
 public class Postagem {
 	
 	@Id
