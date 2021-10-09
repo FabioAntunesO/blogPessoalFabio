@@ -1,10 +1,14 @@
 package org.generation.blogFabio.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -25,6 +29,9 @@ public class Usuario {
 	
 	@Size(min = 2,max = 100, message = "O atributo usenha deve conter no minimo 2 caracter")
 	private String senha;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date data = new java.sql.Date(System.currentTimeMillis());
 
 	public long getId() {
 		return id;
@@ -56,5 +63,13 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public Date getDate() {
+		return data;
+	}
+
+	public void setDate(Date data) {
+		this.data = data;
 	}
 }
