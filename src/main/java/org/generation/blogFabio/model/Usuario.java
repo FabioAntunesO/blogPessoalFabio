@@ -1,37 +1,50 @@
 package org.generation.blogFabio.model;
 
-import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuario")
 public class Usuario {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotNull
 	private String nome;
-	
+
 	@NotNull
-	@Size(min = 2,max = 100, message = "O atributo usuario deve conter no minimo 2 caracter")
+	@Size(min = 2, max = 100, message = "O atributo usuario deve conter no minimo 2 caracter")
 	private String usuario;
-	
-	@Size(min = 2,max = 100, message = "O atributo usenha deve conter no minimo 2 caracter")
+
+	@Size(min = 2, max = 100, message = "O atributo usenha deve conter no minimo 2 caracter")
 	private String senha;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date data = new java.sql.Date(System.currentTimeMillis());
+
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("usuario")
+	private List<Postagem> postagem;
+
+	public Usuario(long id, @NotNull String nome, String usuario, String senha) {
+
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+	}
+
+	public Usuario() {}
 
 	public long getId() {
 		return id;
@@ -63,13 +76,5 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-	
-	public Date getDate() {
-		return data;
-	}
-
-	public void setDate(Date data) {
-		this.data = data;
 	}
 }

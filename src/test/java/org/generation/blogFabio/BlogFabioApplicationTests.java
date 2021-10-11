@@ -4,9 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class BlogFabioApplicationTests {
-	
+class BlogFabioApplicationTests {
+
 	@Test
 	void contextLoads() {
 	}
+
 }
